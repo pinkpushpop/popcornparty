@@ -3,6 +3,7 @@
   const crumbs = document.getElementById("crumbs");
   const status = document.getElementById("status");
   const IMG = "https://image.tmdb.org/t/p/";
+  const SAFE_IMG = /^\/[\w-]+\.(jpg|jpeg|png|webp)$/;
   const cache = new Map();
   const FIELDS = {
     search: [], results: ["query"], cast: ["query", "movie"],
@@ -34,7 +35,7 @@
   }
 
   const img = (path, alt, size, cls = "poster") =>
-    path
+    path && SAFE_IMG.test(path)
       ? h("img", { class: cls, src: `${IMG}${size}${path}`, alt, loading: "lazy" })
       : h("div", { class: "noposter", role: "img", "aria-label": alt }, "No image");
 
@@ -158,6 +159,13 @@
     } catch (err) {
       if (my === token) fail(err, () => render(s));
     }
+  }
+
+  const logo = document.querySelector("footer img");
+  if (logo) {
+    const drop = () => logo.remove();
+    logo.addEventListener("error", drop);
+    if (logo.complete && logo.naturalWidth === 0) drop();
   }
 
   window.addEventListener("popstate", (e) => render(e.state || { step: "search" }));

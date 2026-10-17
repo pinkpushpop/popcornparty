@@ -1,18 +1,20 @@
-@font-face{font-family:"Arcane Nine";src:url("assets/Arcane_Nine.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Sancreek";src:url("assets/fonts/sancreek-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Narnoor";src:url("assets/fonts/narnoor-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Narnoor";src:url("assets/fonts/narnoor-latin-800-normal.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
 :root{
   --ink:#0b0b0b; --velvet:#1a0508; --red:#b3121f; --red-hi:#e0283a;
   --gold:#cfc09f; --gold-soft:#ffecb3; --gold-deep:#3a2c0f;
   --gold-grad:linear-gradient(to bottom,#cfc09f 27%,#ffecb3 40%,#3a2c0f 78%);
   --gold-grad-sm:linear-gradient(to bottom,#ffecb3 20%,#cfc09f 55%,#8c7a45 100%); --grey:#4a4a4c; --paper:#f4ead2;
-  --display:"Arcane Nine",Georgia,"Times New Roman",serif;
-  --text:"Libre Caslon Text",Georgia,"Times New Roman",serif;
+  --display:"Sancreek","Narnoor",Georgia,"Times New Roman",serif;
+  --text:"Narnoor",Georgia,"Times New Roman",serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;min-height:100vh;display:flex;flex-direction:column;
   background:var(--ink) url("assets/fancy-cushion.png") top center/400px 400px repeat;
-  color:var(--paper);font:400 1.05rem/1.6 var(--text);
+  color:var(--paper);font:400 1.15rem/1.6 var(--text);
 }
 body::before{ /* vignette so the pattern recedes toward the edges */
   content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
@@ -44,7 +46,7 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold)}
 .search{display:flex;gap:.5rem;max-width:640px;margin:1.5rem auto 0}
 .search input{flex:1;min-width:0;font:inherit;font-size:1.15rem;padding:.8rem 1rem;color:var(--ink);
   background:var(--paper);border:2px solid var(--gold);border-radius:2px}
-.btn{font:700 1rem var(--text);cursor:pointer;padding:.8rem 1.4rem;color:var(--paper);background:var(--red);
+.btn{font:800 1rem var(--text);cursor:pointer;padding:.8rem 1.4rem;color:var(--paper);background:var(--red);
   border:2px solid var(--gold);border-radius:2px;transition:background .15s}
 .btn:hover{background:var(--red-hi)}
 .btn.ghost{background:var(--ink);color:var(--gold)}
@@ -58,7 +60,7 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold)}
   background:var(--velvet);border:1px solid #5a4a1a}
 button.card:hover{border-color:var(--gold);box-shadow:0 0 0 2px var(--red)}
 .card .meta{padding:.6rem .7rem .8rem;display:flex;flex-direction:column;gap:.15rem}
-.card .name{font-weight:700;line-height:1.25}
+.card .name{font-weight:800;line-height:1.25}
 .card .sub{font-size:.85rem;color:var(--gold-soft)}
 .poster{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;background:#111}
 .noposter{aspect-ratio:2/3;display:grid;place-items:center;text-align:center;padding:.5rem;color:var(--gold-soft);
@@ -66,7 +68,7 @@ button.card:hover{border-color:var(--gold);box-shadow:0 0 0 2px var(--red)}
 .cast-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
 .cast-grid .card{flex-direction:row;align-items:stretch}
 .cast-grid .poster,.cast-grid .noposter{width:64px;aspect-ratio:auto;flex:none}
-.cast-grid .name{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--gold)}
+.cast-grid .name{font-family:var(--display);font-weight:400;font-size:1.15rem;overflow-wrap:anywhere;color:var(--gold)}
 
 /* Actor page */
 .actor-head{display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}

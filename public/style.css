@@ -1,0 +1,98 @@
+@font-face{font-family:"Arcane Nine";src:url("assets/Arcane_Nine.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+:root{
+  --ink:#0b0b0b; --velvet:#1a0508; --red:#b3121f; --red-hi:#e0283a;
+  --gold:#cfc09f; --gold-soft:#ffecb3; --gold-deep:#3a2c0f;
+  --gold-grad:linear-gradient(to bottom,#cfc09f 27%,#ffecb3 40%,#3a2c0f 78%);
+  --gold-grad-sm:linear-gradient(to bottom,#ffecb3 20%,#cfc09f 55%,#8c7a45 100%); --grey:#4a4a4c; --paper:#f4ead2;
+  --display:"Arcane Nine",Georgia,"Times New Roman",serif;
+  --text:"Libre Caslon Text",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;display:flex;flex-direction:column;
+  background:var(--ink) url("assets/fancy-cushion.png") top center/400px 400px repeat;
+  color:var(--paper);font:400 1.05rem/1.6 var(--text);
+}
+body::before{ /* vignette so the pattern recedes toward the edges */
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.55));
+}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+main{flex:1;width:min(1100px,100%);margin:0 auto;padding:1.5rem 1.25rem 4rem}
+main:focus{outline:none}
+
+.masthead{background:var(--ink);border-bottom:3px double var(--gold);padding:.9rem 1.25rem;
+  display:flex;flex-wrap:wrap;gap:.5rem 2rem;align-items:center;justify-content:space-between}
+.brand{font:400 1.7rem var(--display);color:var(--gold);text-decoration:none;letter-spacing:.03em}
+#crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.25rem .6rem;margin:0;padding:0;font-size:.9rem}
+#crumbs li+li::before{content:"/";color:var(--red-hi);margin-right:.6rem}
+#crumbs button{all:unset;cursor:pointer;color:var(--gold-soft);text-decoration:underline;text-underline-offset:3px}
+#crumbs [aria-current]{color:var(--paper)}
+
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.1;margin:0 0 .5rem}
+h1{font-size:clamp(2.4rem,7vw,4.5rem);color:var(--gold)}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold)}
+.lede{max-width:60ch;color:var(--paper);margin:0 0 1.5rem}
+
+/* Landing */
+.hero{background:var(--ink);border:2px solid var(--gold);outline:1px solid var(--gold);outline-offset:-8px;
+  padding:clamp(2rem,6vw,4rem) clamp(1.25rem,5vw,3.5rem);margin-top:2rem;text-align:center;
+  box-shadow:0 0 0 6px var(--red),0 20px 50px rgba(0,0,0,.6)}
+.hero .lede{margin-inline:auto}
+.search{display:flex;gap:.5rem;max-width:640px;margin:1.5rem auto 0}
+.search input{flex:1;min-width:0;font:inherit;font-size:1.15rem;padding:.8rem 1rem;color:var(--ink);
+  background:var(--paper);border:2px solid var(--gold);border-radius:2px}
+.btn{font:700 1rem var(--text);cursor:pointer;padding:.8rem 1.4rem;color:var(--paper);background:var(--red);
+  border:2px solid var(--gold);border-radius:2px;transition:background .15s}
+.btn:hover{background:var(--red-hi)}
+.btn.ghost{background:var(--ink);color:var(--gold)}
+.btn.ghost:hover{background:var(--velvet)}
+
+/* Panels & cards */
+.panel{background:rgba(11,11,11,.92);border:1px solid var(--gold);padding:1.25rem clamp(1rem,3vw,2rem) 2rem;margin-top:1.5rem}
+.grid{list-style:none;margin:1.25rem 0 0;padding:0;display:grid;gap:1.1rem;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.card{all:unset;box-sizing:border-box;display:flex;flex-direction:column;width:100%;height:100%;cursor:pointer;
+  background:var(--velvet);border:1px solid #5a4a1a}
+button.card:hover{border-color:var(--gold);box-shadow:0 0 0 2px var(--red)}
+.card .meta{padding:.6rem .7rem .8rem;display:flex;flex-direction:column;gap:.15rem}
+.card .name{font-weight:700;line-height:1.25}
+.card .sub{font-size:.85rem;color:var(--gold-soft)}
+.poster{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;background:#111}
+.noposter{aspect-ratio:2/3;display:grid;place-items:center;text-align:center;padding:.5rem;color:var(--gold-soft);
+  background:repeating-linear-gradient(45deg,#111,#111 8px,#190608 8px,#190608 16px);font-size:.85rem}
+.cast-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.cast-grid .card{flex-direction:row;align-items:stretch}
+.cast-grid .poster,.cast-grid .noposter{width:64px;aspect-ratio:auto;flex:none}
+.cast-grid .name{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--gold)}
+
+/* Actor page */
+.actor-head{display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}
+.actor-head .poster,.actor-head .noposter{width:110px;aspect-ratio:2/3;border:2px solid var(--gold)}
+.top-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.rank{position:absolute;top:0;left:0;z-index:1;background:var(--red);color:var(--paper);border:1px solid var(--gold);
+  font:400 1.2rem var(--display);padding:.1rem .6rem}
+.film{position:relative;background:var(--velvet);border:1px solid var(--gold);display:flex;flex-direction:column}
+.film .score{color:var(--gold);font-weight:700}
+.film .role{font-style:italic;color:var(--paper);font-size:.9rem}
+.more{margin-top:1.5rem;text-align:center}
+
+.note{margin:1.5rem 0;padding:1rem 1.25rem;background:var(--ink);border-left:5px solid var(--red-hi)}
+.loading{padding:3rem 0;text-align:center;font:400 1.6rem var(--display);color:var(--gold)}
+footer{background:var(--ink);border-top:3px double var(--gold);padding:1rem;text-align:center;font-size:.8rem;color:var(--gold-soft)}
+footer img{display:block;margin:0 auto .5rem}
+footer p{margin:0}
+@media (max-width:520px){.search{flex-direction:column}}
+@media (prefers-reduced-motion:no-preference){.hero{animation:rise .6s ease-out both}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Gold text effect (after codepen.io/mandymichael/pen/xpLNeV) */
+.brand,h1,h2,.cast-grid .name,.loading{
+  background:var(--gold-grad-sm);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--gold);
+}
+h1{background-image:var(--gold-grad);
+  filter:drop-shadow(-1px 0 1px #c6bb9f) drop-shadow(0 1px 1px #c6bb9f) drop-shadow(5px 5px 10px rgba(0,0,0,.4)) drop-shadow(-5px -5px 10px rgba(0,0,0,.4))}
+.cast-grid .name{display:block}

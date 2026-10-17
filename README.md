@@ -22,3 +22,8 @@ https://www.themoviedb.org/about/logos-attribution and save it as `public/assets
 - Filmography is movie credits only; roles listed as Self/Himself/Herself/Themselves or Archive Footage are dropped.
 - Movies sort by TMDB `vote_average` only (ties broken by vote count). Unrated films fall to the bottom.
 - If an actor has several roles in one movie they appear together on one card.
+
+## Security
+- Strict CSP and other headers are set in `netlify.toml` (no inline scripts/styles; only your own files and TMDB images are allowed).
+- The function (`netlify/functions/tmdb.mjs`) allows three actions, validates ids, returns generic errors, and declares a rate limit (60 requests/minute per IP). Confirm the rule appears in Netlify's dashboard after deploy.
+- Fonts are self-hosted. Narnoor (body) and Sancreek (headings) are SIL OFL licensed, bundled via @fontsource; keep its license if you redistribute.
